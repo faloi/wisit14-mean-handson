@@ -14,7 +14,7 @@ app.service("Actividad", function() {
 
   Actividad.prototype.cambiarAsistencia = function () {
     if (this.asiste === true)
-      this.asiste = undefined;
+      this.asiste = null;
     else
       this.asiste = true;
   };
