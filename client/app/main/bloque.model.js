@@ -24,49 +24,42 @@ app.service("Bloque", function(Actividad) {
   Bloque.prototype.cambiarAsistencia = function (actividad) {
     actividad.cambiarAsistencia();
 
-    if (actividad.asiste) {
-      this.inhabilitarActividadesSolapadas(actividad);
-      this.habilitarActividadesNoSolapadas(actividad);
-    } else {
-      this.habilitarActividadesSolapadas(actividad);
-    }
+    this.desbloquear(this.actividades);
+    this.deseleccionar(this.actividadesSolapadasPor(actividad));
+    this.bloquear(this.actividadesSolapadasPorSeleccionadas());
   };
 
-  Bloque.prototype.inhabilitarActividadesSolapadas = function(actividad) {
-    _(this.actividades)
+  Bloque.prototype.actividadesSolapadasPor = function(actividad) {
+    return _(this.actividades)
       .without(actividad)
       .filter(function (act) {
         return act.sePisaCon(actividad);
       })
-      .forEach(function (act) {
-        act.asiste = false
-      });
+      .value();
   };
 
-  Bloque.prototype.habilitarActividadesNoSolapadas = function(actividad) {
-    _(this.actividades)
-      .without(actividad)
-      .reject(function (act) {
-        return act.sePisaCon(actividad);
-      })
-      .reject("asiste")
-      .forEach(function (act) {
-        act.asiste = null
-      });
+  Bloque.prototype.actividadesSolapadasPorSeleccionadas = function() {
+    return _(this.actividadesSeleccionadas())
+      .map(this.actividadesSolapadasPor, this)
+      .flatten()
+      .uniq()
+      .value();
   };
 
-  Bloque.prototype.habilitarActividadesSolapadas = function(actividad) {
-    var resto = _.without(this.actividades, actividad);
-    _(resto)
-      .filter({asiste: false})
-      .reject(function(act) {
-        return _.any(resto, function (otra) {
-          return act != otra && otra.asiste && act.sePisaCon(otra);
-        })
-      })
-      .forEach(function (act) {
-        act.asiste = null
-      });
+  Bloque.prototype.actividadesSeleccionadas = function() {
+    return _.filter(this.actividades, "asiste");
+  };
+
+  Bloque.prototype.desbloquear = function(actividades) {
+    _(actividades).filter({asiste: false}).forEach(function(act) { act.asiste = null });
+  };
+
+  Bloque.prototype.deseleccionar = function(actividades) {
+    _(actividades).filter({asiste: true}).forEach(function(act) { act.asiste = null });
+  };
+
+  Bloque.prototype.bloquear = function(actividades) {
+    _.forEach(actividades, function(act) { act.asiste = false });
   };
 
   return Bloque;
