@@ -18,7 +18,7 @@
             <p>{{act.nombre}} ({{act.inicio | date:'shortTime'}} - {{act.fin | date:'shortTime'}})</p>
           </div>
           <div class="col-md-2 col-xs-1 actividad-inscripcion">
-            <button type="button" class="btn" ng-class="act.color()" ng-click="act.cambiarAsistencia()">
+            <button type="button" class="btn" ng-class="act.color()" ng-click="cambiarAsistencia(act)">
               <i class="fa" ng-class="act.icon()"></i>
             </button>
           </div>

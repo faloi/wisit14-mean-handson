@@ -48,7 +48,15 @@ Actividad.prototype.checkearAsistencia = function(valorTrue, valorFalse, valorNu
 
     default:
       return valorNull;
-  };
+  }
+};
+
+Actividad.prototype.sePisaCon = function(otra) {
+  return this.duracion().overlaps(otra.duracion());
+};
+
+Actividad.prototype.duracion = function() {
+  return moment().range(this.inicio, this.fin);
 };
 
 var Bloque = function() {};
@@ -73,6 +81,18 @@ Bloque.prototype.fin = function() {
   return _.max(this.actividades, 'fin').fin;
 };
 
+Bloque.prototype.cambiarAsistencia = function(actividad) {
+  actividad.cambiarAsistencia();
+
+  if (!actividad.asiste)
+    return;
+
+  _(this.actividades)
+    .without(actividad)
+    .filter(function(act) { return act.sePisaCon(actividad); })
+    .forEach(function(act) { act.asiste = false });
+};
+
 angular.module('wisitTrackerApp')
   .service('Bloques', function() {
     var Bloques = {};
@@ -86,20 +106,20 @@ angular.module('wisitTrackerApp')
           {
             nombre: "Experiencias de la construcción de una carrera de programación",
             inicio: "14:30",
-            fin: "15:00",
+            fin: "15:20",
             espacio: "Aula Magna",
             asiste: null
           },
           {
             nombre: "Pleasy Web: Inclusion Digital",
-            inicio: "15:15",
-            fin: "15:45",
+            inicio: "15:20",
+            fin: "15:55",
             espacio: "Aula Magna",
             asiste: null
           },
           {
             nombre: "Computadora Industrial Abierta Argentina (CIAA)",
-            inicio: "16:00",
+            inicio: "15:55",
             fin: "16:30",
             espacio: "Aula Magna",
             asiste: null
@@ -203,4 +223,8 @@ angular.module('wisitTrackerApp')
 
   .controller('BloqueCtrl', function ($scope, $routeParams, Bloques) {
     $scope.bloque = Bloque.fromJson(Bloques.get(parseInt($routeParams.numeroBloque)));
+
+    $scope.cambiarAsistencia = function(actividad) {
+      $scope.bloque.cambiarAsistencia(actividad);
+    };
   });
