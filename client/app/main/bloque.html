@@ -3,7 +3,7 @@
     {{bloque.dia}}
     <small>Bloque #{{bloque.numero}}</small>
   </h1>
-  <div class="row actividad">
+  <div class="row">
     <div class="col-md-6" ng-repeat="(espacio, actividades) in bloque.actividades | groupBy:'espacio'">
       <h3 class="page-header">{{espacio}}</h3>
       <ul class="nav nav-tabs nav-stacked col-md-12 list-group" ng-repeat="act in actividades">

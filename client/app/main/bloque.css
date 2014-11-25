@@ -1,0 +1,7 @@
+.actividad-inscripcion button {
+    border-radius: 25px;
+    width: 60px;
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+}
