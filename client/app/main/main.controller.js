@@ -1,9 +1,30 @@
 'use strict';
 
-var Actividad = function(nombre, asiste) {
-  this.nombre = nombre;
-  this.asiste = asiste;
-}
+_.mixin({
+  assignAndTransform: function(destination, source, transformations) {
+    _.forIn(source, function(value, key) {
+      if (transformations[key] != undefined)
+        destination[key] = transformations[key](value);
+      else
+        destination[key] = value;
+    });
+
+    return destination;
+  }
+});
+
+var Actividad = function() {};
+
+Actividad.fromJson = function (json) {
+  return _.assignAndTransform(
+    new Actividad(),
+    json,
+    {
+      inicio: Date.parse,
+      fin: Date.parse
+    }
+  );
+};
 
 Actividad.prototype.cambiarAsistencia = function() {
   this.asiste = !this.asiste;
@@ -28,48 +49,141 @@ Actividad.prototype.checkearAsistencia = function(valorTrue, valorFalse, valorNu
     default:
       return valorNull;
   };
-}
+};
+
+var Bloque = function() {};
+
+Bloque.fromJson = function (json) {
+  return _.assignAndTransform(
+    new Bloque(),
+    json,
+    {
+      inicio: Date.parse,
+      fin: Date.parse,
+      actividades: _.partialRight(_.map, Actividad.fromJson)
+    }
+  );
+};
+
+Bloque.prototype.inicio = function() {
+  return _.min(this.actividades, 'inicio').inicio;
+};
+
+Bloque.prototype.fin = function() {
+  return _.max(this.actividades, 'fin').fin;
+};
 
 angular.module('wisitTrackerApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.actividades = _.map([
+    $scope.conferencia = _.map([
       {
-        nombre: "Experiencias de la construcción de una carrera de programación",
-        asiste: null
+        numero: 1,
+        dia: "Viernes",
+        actividades: [
+          {
+            nombre: "Experiencias de la construcción de una carrera de programación",
+            inicio: "14:30",
+            fin: "15:00",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Pleasy Web: Inclusion Digital",
+            inicio: "15:15",
+            fin: "15:45",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Computadora Industrial Abierta Argentina (CIAA)",
+            inicio: "16:00",
+            fin: "16:30",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Tutorial en Apache Spark: Clasificando tweets en realtime",
+            inicio: "14:30",
+            fin: "16:00",
+            espacio: "Laboratorio Rojo",
+            asiste: null
+          },
+          {
+            nombre: "How I met your Android",
+            inicio: "14:30",
+            fin: "16:00",
+            espacio: "Laboratorio Azul",
+            asiste: null
+          }
+        ]
       },
       {
-        nombre: "Pleasy Web: Inclusion Digital",
-        asiste: true
+        numero: 2,
+        dia: "Viernes",
+        actividades: [
+          {
+            nombre: "Desarrollo de videojuegos con pilas-engine",
+            inicio: "17:15",
+            fin: "17:45",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Escalar sin antecedentes - Una Aventura de Microservicios",
+            inicio: "18:00",
+            fin: "18:30",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Utilización de NoSQL para resolución de problemas al trabajar con cantidades masivas de datos",
+            inicio: "18:45",
+            fin: "19:15",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Webapp moderna utilizando Stack Mean",
+            inicio: "17:15",
+            fin: "19:15",
+            espacio: "Laboratorio Rojo",
+            asiste: null
+          },
+          {
+            nombre: "How I met your Android",
+            inicio: "17:15",
+            fin: "19:15",
+            espacio: "Laboratorio Azul",
+            asiste: null
+          }
+        ]
       },
       {
-        nombre: "Computadora Industrial Abierta Argentina (CIAA)",
-        asiste: false
-      },
-      {
-        nombre: "Construyendo una infraestructura de Big Data rentable y escalable",
-        asiste: null
-      },
-      {
-        nombre: "Escalar sin antecedentes - Una Aventura de Microservicios",
-        asiste: null
-      },
-      {
-        nombre: "Utilización de NoSQL para resolución de problemas al trabajar con cantidades masivas de datos",
-        asiste: null
-      },
-      {
-        nombre: "En camino hacia Java 8",
-        asiste: null
-      },
-      {
-        nombre: "Implementando Puppet en una agencia estatal en Argentina",
-        asiste: null
-      },
-      {
-        nombre: "Un sistema para 500 millones de inversiones",
-        asiste: null
+        numero: 3,
+        dia: "Viernes",
+        actividades: [
+          {
+            nombre: "En camino hacia Java 8",
+            inicio: "19:30",
+            fin: "20:00",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Poné Node.js en la nube",
+            inicio: "20:45",
+            fin: "21:15",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Un sistema para 500 millones de inversiones",
+            inicio: "21:30",
+            fin: "22:00",
+            espacio: "Aula Magna",
+            asiste: null
+          }
+        ]
       }
-    ], function(actividadJson) {
-      return new Actividad(actividadJson.nombre, actividadJson.asiste);
-    });
+    ], Bloque.fromJson);
   });

@@ -5,7 +5,8 @@ angular.module('wisitTrackerApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angular.filter'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

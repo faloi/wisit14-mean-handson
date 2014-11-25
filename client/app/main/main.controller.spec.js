@@ -5,24 +5,28 @@ describe('Controller: MainCtrl', function () {
   // load the controller's module
   beforeEach(module('wisitTrackerApp'));
 
-  var MainCtrl,
-      scope,
-      $httpBackend;
+  beforeEach(function () {
+    _.mixin({
+      assignAndTransform: function(destination, source, transformations) {
+        _.forIn(source, function(value, key) {
+          if (transformations[key] != undefined)
+            destination[key] = transformations[key](source[key]);
+          else
+            destination[key] = source[key];
+        });
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('/api/things')
-      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
-
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+        return destination;
+      }
     });
-  }));
+  });
 
-  it('should attach a list of things to the scope', function () {
-    $httpBackend.flush();
-    expect(scope.awesomeThings.length).toBe(4);
+  it('assignAndTransform', function () {
+    var destination = _.assignAndTransform(
+      {},
+      { inicio: "14", nombre: "hola" },
+      { inicio: parseInt }
+    );
+
+    expect(destination).toEqual({inicio: 14, nombre: "hola"});
   });
 });
