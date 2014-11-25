@@ -1,12 +1,16 @@
 <div class="container">
-  <h1>{{bloque.dia}} - Bloque #{{bloque.numero}}</h1>
+  <h1>
+    {{bloque.dia}}
+    <small>Bloque #{{bloque.numero}}</small>
+  </h1>
   <div class="row actividad">
     <div class="col-md-6" ng-repeat="(espacio, actividades) in bloque.actividades | groupBy:'espacio'">
       <h3 class="page-header">{{espacio}}</h3>
       <ul class="nav nav-tabs nav-stacked col-md-12 list-group" ng-repeat="act in actividades">
         <li>
           <div class="col-md-10 col-xs-9">
-            <p>{{act.nombre}} ({{act.inicio | date:'shortTime'}} - {{act.fin | date:'shortTime'}})</p>
+            <i>{{act.inicio | date:'H:mm'}} - {{act.fin | date:'H:mm'}}</i>
+            <p>{{act.nombre}}</p>
           </div>
           <div class="col-md-2 col-xs-1 actividad-inscripcion">
             <button type="button" class="btn" ng-class="act.color()" ng-click="cambiarAsistencia(act)">

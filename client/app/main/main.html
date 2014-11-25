@@ -12,7 +12,7 @@
       <ul class="nav nav-tabs nav-stacked" ng-repeat="bloque in bloques">
         <li>
           <a ng-href="/bloque/{{bloque.numero}}">
-            Bloque #{{bloque.numero}} ({{bloque.inicio() | date:'shortTime'}} - {{bloque.fin() | date:'shortTime'}})
+            Bloque #{{bloque.numero}} / {{bloque.inicio() | date:'H:mm'}} - {{bloque.fin() | date:'H:mm'}}
           </a>
         </li>
       </ul>
