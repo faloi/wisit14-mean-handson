@@ -33,8 +33,18 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <div ng-include="'components/navbar/navbar.html'"></div>
+
     <!-- Add your site or application content here -->
     <div ng-view=""></div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>Hands on stack MEAN |
+          <a href="https://twitter.com/search?q=%23wisit14">#wisit14</a> |
+          <a href="http://wisit.uqbar.org">wisit.uqbar.org</a></p>
+      </div>
+    </footer>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>

@@ -1,14 +1,5 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
-
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <img src="assets/images/wisit.png" alt="Wisit14">
-    <h2>Tracker de charlas</h2>
-  </div>
-</header>
-
 <div class="container">
-  <h2 class="page-header">{{bloque.dia}} - Bloque #{{bloque.numero}}</h2>
+  <h1>{{bloque.dia}} - Bloque #{{bloque.numero}}</h1>
   <div class="row actividad">
     <div class="col-md-6" ng-repeat="(espacio, actividades) in bloque.actividades | groupBy:'espacio'">
       <h3 class="page-header">{{espacio}}</h3>
@@ -27,11 +18,3 @@
     </div>
   </div>
 </div>
-
-<footer class="footer">
-  <div class="container">
-      <p>Hands on stack MEAN |
-        <a href="https://twitter.com/search?q=%23wisit14">#wisit14</a> |
-         <a href="http://wisit.uqbar.org">wisit.uqbar.org</a></p>
-  </div>
-</footer>
