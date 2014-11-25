@@ -74,8 +74,11 @@ Bloque.prototype.fin = function() {
 };
 
 angular.module('wisitTrackerApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.conferencia = _.map([
+  .service('Bloques', function() {
+    var Bloques = {};
+
+    Bloques.all = function() {
+      return [
       {
         numero: 1,
         dia: "Viernes",
@@ -184,6 +187,20 @@ angular.module('wisitTrackerApp')
             asiste: null
           }
         ]
-      }
-    ], Bloque.fromJson);
+      }];
+    };
+
+    Bloques.get = function (numero) {
+      return _.find(Bloques.all(), { numero: numero });
+    };
+
+    return Bloques;
+  })
+
+  .controller('MainCtrl', function ($scope, Bloques) {
+    $scope.conferencia = _.map(Bloques.all(), Bloque.fromJson);
+  })
+
+  .controller('BloqueCtrl', function ($scope, $routeParams, Bloques) {
+    $scope.bloque = Bloque.fromJson(Bloques.get(parseInt($routeParams.numeroBloque)));
   });

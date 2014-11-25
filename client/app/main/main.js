@@ -6,5 +6,10 @@ angular.module('wisitTrackerApp')
       .when('/', {
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
+      })
+
+      .when('/bloque/:numeroBloque', {
+        templateUrl: 'app/main/bloque.html',
+        controller: 'BloqueCtrl'
       });
   });
