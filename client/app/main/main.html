@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-md-6" ng-repeat="bloques in conferencia | groupBy: 'dia' | toArray: true | orderBy:'-$key'">
       <h2 class="page-header">{{bloques.$key}}</h2>
-      <ul class="nav nav-tabs nav-stacked" ng-repeat="bloque in bloques">
+      <ul class="nav nav-tabs" ng-repeat="bloque in bloques">
         <li>
           <a ng-href="/bloque/{{bloque.numero}}">
             Bloque #{{bloque.numero}} / {{bloque.inicio() | date:'H:mm'}} - {{bloque.fin() | date:'H:mm'}}
