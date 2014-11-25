@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('wisitTrackerApp', [
+window.app = angular.module('wisitTrackerApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -16,6 +16,19 @@ angular.module('wisitTrackerApp', [
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+
+    _.mixin({
+      assignAndTransform: function(destination, source, transformations) {
+        _.forIn(source, function(value, key) {
+          if (transformations[key] != undefined)
+            destination[key] = transformations[key](value);
+          else
+            destination[key] = value;
+        });
+
+        return destination;
+      }
+    });
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
