@@ -111,7 +111,158 @@ app.service('Bloques', function(Bloque) {
             asiste: null
           }
         ]
-      }], Bloque.fromJson);
+      },
+      {
+        numero: 4,
+        dia: "Sábado",
+        actividades: [
+          {
+            nombre: "Diseño de software y hardware de un Controlador Lógico Programable (PLC) y su entorno de programación",
+            inicio: "10:00",
+            fin: "10:35",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Improving the resilience of embedded architectures to Hardware Faults",
+            inicio: "10:35",
+            fin: "11:10",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Programación orientada a sujetos",
+            inicio: "10:00",
+            fin: "10:35",
+            espacio: "Auditorio",
+            asiste: null
+          },
+          {
+            nombre: "Un enfoque participativo y ágil para la enseñanza de objetos en la FIUBA",
+            inicio: "10:35",
+            fin: "11:10",
+            espacio: "Auditorio",
+            asiste: null
+          },
+          {
+            nombre: "Desarrollo Web en Grails",
+            inicio: "10:00",
+            fin: "11:10",
+            espacio: "Laboratorio Verde",
+            asiste: null
+          }
+        ]
+      },
+      {
+        numero: 5,
+        dia: "Sábado",
+        actividades: [
+          {
+            nombre: "FOP-ARSAT: Simulando la Red Federal de Fibra Óptica usando Python",
+            inicio: "11:40",
+            fin: "12:15",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Implementación de Safety Critical Java HVM sobre ARM Cortex M4 y extensión de su IDE",
+            inicio: "12:15",
+            fin: "12:50",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Wollok – Relearning How To Teach Object-Oriented Programming",
+            inicio: "11:40",
+            fin: "12:15",
+            espacio: "Auditorio",
+            asiste: null
+          },
+          {
+            nombre: "¿Por qué todos los chicos y todas las chicas deben aprender a programar?",
+            inicio: "12:15",
+            fin: "12:50",
+            espacio: "Auditorio",
+            asiste: null
+          },
+          {
+            nombre: "Desarrollo Web en Grails",
+            inicio: "11:40",
+            fin: "12:50",
+            espacio: "Laboratorio Verde",
+            asiste: null
+          }
+        ]
+      },
+      {
+        numero: 6,
+        dia: "Sábado",
+        actividades: [
+          {
+            nombre: "De mentes libres",
+            inicio: "14:00",
+            fin: "14:35",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Utilización de NoSQL para resolución de problemas al trabajar con cantidades masivas de datos",
+            inicio: "14:35",
+            fin: "15:10",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Los cambios de la innovación y su impacto en el sector de las tecnologías de la información y la comunicación",
+            inicio: "15:10",
+            fin: "15:45",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "Breakpoint support for Live Environments: The case of Pharo",
+            inicio: "14:00",
+            fin: "14:35",
+            espacio: "Auditorio",
+            asiste: null
+          },
+          {
+            nombre: "An approach to typed data binding using typed macros",
+            inicio: "14:35",
+            fin: "15:10",
+            espacio: "Auditorio",
+            asiste: null
+          },
+          {
+            nombre: "Melta: Prototipo de una base de objetos en Python",
+            inicio: "15:10",
+            fin: "15:45",
+            espacio: "Auditorio",
+            asiste: null
+          },
+        ]
+      },
+      {
+        numero: 7,
+        dia: "Sábado",
+        actividades: [
+          {
+            nombre: "Lean Sales Up",
+            inicio: "16:15",
+            fin: "17:00",
+            espacio: "Aula Magna",
+            asiste: null
+          },
+          {
+            nombre: "El lenguaje de programación Crystal",
+            inicio: "16:15",
+            fin: "17:00",
+            espacio: "Auditorio",
+            asiste: null
+          }
+        ]
+      }
+    ], Bloque.fromJson);
   };
 
   Bloques.get = function (numero) {

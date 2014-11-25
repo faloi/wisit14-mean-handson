@@ -13,7 +13,10 @@ app.service("Actividad", function() {
   };
 
   Actividad.prototype.cambiarAsistencia = function () {
-    this.asiste = !this.asiste;
+    if (this.asiste === true)
+      this.asiste = undefined;
+    else
+      this.asiste = true;
   };
 
   Actividad.prototype.icon = function () {
