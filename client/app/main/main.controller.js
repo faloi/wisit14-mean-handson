@@ -2,11 +2,15 @@
 
 app
   .controller('MainCtrl', function ($scope, Bloques) {
-    $scope.conferencia = Bloques.all();
+    Bloques.all().then(function(bloques) {
+      $scope.conferencia = bloques;
+    });
   })
 
   .controller('BloqueCtrl', function ($scope, $routeParams, Bloques) {
-    $scope.bloque = Bloques.get(parseInt($routeParams.numeroBloque));
+    Bloques.get(parseInt($routeParams.numeroBloque)).then(function(bloque) {
+      $scope.bloque = bloque;
+    });
 
     $scope.cambiarAsistencia = function(actividad) {
       $scope.bloque.cambiarAsistencia(actividad);
