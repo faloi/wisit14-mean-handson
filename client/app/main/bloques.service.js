@@ -1,5 +1,5 @@
 app.service('Bloques', function(Bloque, $http) {
-  const baseUrl = "/api/bloques";
+  var baseUrl = "/api/bloques";
 
   var Bloques = {};
 
@@ -10,7 +10,7 @@ app.service('Bloques', function(Bloque, $http) {
   };
 
   Bloques.get = function (numero) {
-    return $http.get("/api/bloques/" + numero).then(function (response) {
+    return $http.get(baseUrl + "/" + numero).then(function (response) {
       return Bloque.fromJson(response.data);
     });
   };
