@@ -14,5 +14,6 @@ app
 
     $scope.cambiarAsistencia = function(actividad) {
       $scope.bloque.cambiarAsistencia(actividad);
+      Bloques.savePreferences($scope.bloque);
     };
   });

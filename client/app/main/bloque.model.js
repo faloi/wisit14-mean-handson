@@ -62,5 +62,14 @@ app.service("Bloque", function(Actividad) {
     _.forEach(actividades, function(act) { act.asiste = false });
   };
 
+  Bloque.prototype.setAsistencias = function(preferencias) {
+    var self = this;
+
+    _.forEach(preferencias, function(preferencia) {
+      var actividad = _.find(self.actividades, { _id: preferencia.id });
+      actividad.asiste = preferencia.asiste;
+    });
+  };
+
   return Bloque;
 });
