@@ -67,7 +67,9 @@ app.service("Bloque", function(Actividad) {
 
     _.forEach(preferencias, function(preferencia) {
       var actividad = _.find(self.actividades, { _id: preferencia.id });
-      actividad.asiste = preferencia.asiste;
+
+      if (actividad != null)
+        actividad.asiste = preferencia.asiste;
     });
   };
 
