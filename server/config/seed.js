@@ -57,13 +57,13 @@ Bloque.find({}).remove(function() {
           espacio: "Aula Magna"
         },
         {
-          nombre: "Escalar sin antecedentes - Una Aventura de Microservicios",
+          nombre: "En camino hacia Java 8",
           inicio: "18:00",
           fin: "18:30",
           espacio: "Aula Magna"
         },
         {
-          nombre: "Utilización de NoSQL para resolución de problemas al trabajar con cantidades masivas de datos",
+          nombre: "Hackear la Política",
           inicio: "18:45",
           fin: "19:15",
           espacio: "Aula Magna"
@@ -75,7 +75,7 @@ Bloque.find({}).remove(function() {
           espacio: "Laboratorio Rojo"
         },
         {
-          nombre: "How I met your Android",
+          nombre: "How I met your Android (continuación)",
           inicio: "17:15",
           fin: "19:15",
           espacio: "Laboratorio Azul"
@@ -87,13 +87,13 @@ Bloque.find({}).remove(function() {
       dia: "Viernes",
       actividades: [
         {
-          nombre: "En camino hacia Java 8",
+          nombre: "Poné Node.js en la nube",
           inicio: "19:30",
           fin: "20:00",
           espacio: "Aula Magna"
         },
         {
-          nombre: "Poné Node.js en la nube",
+          nombre: "Escalar sin antecedentes - Una Aventura de Microservicios",
           inicio: "20:45",
           fin: "21:15",
           espacio: "Aula Magna"
@@ -171,7 +171,7 @@ Bloque.find({}).remove(function() {
           espacio: "Auditorio"
         },
         {
-          nombre: "Desarrollo Web en Grails",
+          nombre: "Desarrollo Web en Grails (continuación)",
           inicio: "11:40",
           fin: "12:50",
           espacio: "Laboratorio Verde"
