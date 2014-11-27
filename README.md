@@ -19,7 +19,8 @@ Pueden encontrar links directos de descarga en [el Google Doc que compartimos po
 Asumiendo que fueron instalados los prerrequisitos, basta con ejecutar estos comandos para levantar el proyecto:
 
 ```bash
-# Instalar Yeoman, Grunt y Bower, necesarios para correr el proyecto y bajar las dependencias
+# Instalar Yeoman, Grunt y Bower, necesarios para correr el proyecto 
+# y bajar las dependencias
 npm install -g yo
 
 # Clonar el proyecto y acceder a la carpeta
