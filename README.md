@@ -21,6 +21,8 @@ Asumiendo que fueron instalados los prerrequisitos, basta con ejecutar estos com
 ```bash
 # Instalar Yeoman, Grunt y Bower, necesarios para correr el proyecto 
 # y bajar las dependencias
+npm install -g bower
+npm install -g grunt-cli
 npm install -g yo
 
 # Clonar el proyecto y acceder a la carpeta
