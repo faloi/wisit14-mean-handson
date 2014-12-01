@@ -35,3 +35,37 @@ npm install && bower install
 # Levantar servidor y cliente
 grunt serve
 ```
+
+## Cómo fue preparado el proyecto
+Para la generación inicial del código, utilizamos una herramienta de [scaffolding](en.wikipedia.org/wiki/Scaffold_(programming)) para NodeJS llamada [Yeoman](yeoman.io). 
+
+Lo que nos provee es una interfaz de línea de comando para instalar y utilizar distintos [generadores](http://yeoman.io/generators/). El que usamos para este ejemplo se llama [angular-fullstack](https://github.com/DaftMonk/generator-angular-fullstack).
+
+Todo lo anterior se resume en estos comandos:
+
+```bash
+npm install -g yo
+npm install -g generator-angular-fullstack
+mkdir wisit-tracker && cd $_
+yo angular-fullstack wisit-tracker
+```
+
+![image](https://cloud.githubusercontent.com/assets/1585835/5240229/c0a9870e-78dd-11e4-9c8c-f05706b62348.png)
+
+Las opciones que elegimos para el tutorial fueron:
+
+**Client**
+
+1. Javascript
+2. HTML
+3. Sass
+4. ngRoute
+5. Yes (Bootstrap)
+6. Yes (UI Bootstrap)
+
+**Server**
+
+1. Yes (mongoDB with Mongoose)
+2. Yes (authentication boilerplate)
+3. Facebook
+4. No (socket.io)
